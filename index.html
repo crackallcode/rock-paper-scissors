@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            background-color: grey;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .result-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .result {
+            font-family: 'Brush Script MT', cursive;
+            color: #800080;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            font-size: 72px;
+            letter-spacing: 2px;
+        }
+        .game-container {
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Brush Script MT', cursive;
+            color: #800080;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            font-size: 72px;
+            letter-spacing: 2px;
+        }
+        img {
+            width: 600px;
+            height: auto;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div id="result" class="result"></div>
+    </div>
+    <div class="game-container">
+        <h1>Rock, Paper, Scissors!</h1>
+        <div>
+            <img src="rock.png" alt="Player One Choice" id="playerChoice">
+            <img src="paper.png" alt="Player Two Choice" id="playertwo">
+        </div>
+        <button onclick="playGame()">Play Game</button>
+    </div>
+    <script>
+        function playGame(){
+            const choices = ['rock.png', 'paper.png', 'scissors.png'];
+            
+            const playerOneIndex = Math.floor(Math.random() * choices.length);
+            const playerTwoIndex = Math.floor(Math.random() * choices.length);
+            const playerOneChoice = choices[playerOneIndex];
+            const playerTwoChoice = choices[playerTwoIndex];
+            const playerChoiceImage = document.getElementById('playerChoice');
+            const computerChoiceImage = document.getElementById('playertwo');
+
+            playerChoiceImage.src = playerOneChoice;
+            computerChoiceImage.src = playerTwoChoice;
+
+            if (playerOneChoice === playerTwoChoice) {
+                document.querySelector("h1").innerHTML = " It is a tie!"
+            } else if (
+                (playerOneChoice === 'rock.png' && playerTwoChoice === 'scissors.png') ||
+                (playerOneChoice === 'scissors.png' && playerTwoChoice === 'paper.png') ||
+                (playerOneChoice === 'paper.png' && playerTwoChoice === 'rock.png')
+            ) {
+                document.querySelector("h1").innerHTML = "Player One wins!";
+            } else {
+                document.querySelector("h1").innerHTML = "Player Two wins!";
+            }
+        }
+    </script>
+</body>
+</html>
